@@ -1,0 +1,1076 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLEAN Privacy Policy</title>
+    <meta name="description" content="KLEAN Privacy Policy — local browser filtering, permissions, data practices, and privacy disclosures.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+      :root {
+        --ink: #101512;
+        --deep: #070a08;
+        --paper: #f4f7ef;
+        --lime: #caff65;
+        --line: #2c3931;
+        --muted: #aab5ac;
+        --panel: #eef3ea;
+        --panel-strong: #e3ebdf;
+        --soft-dark: #101912;
+        --shadow: rgba(7, 10, 8, 0.18);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        width: 100%;
+        overflow-x: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+      }
+      a { color: inherit; text-decoration: none; }
+      .mono, .eyebrow, .mini-label { font-family: "Space Mono", monospace; }
+      .eyebrow {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+      .display {
+        font-size: clamp(42px, 5vw, 72px);
+        line-height: 0.95;
+        letter-spacing: -.08em;
+      }
+      .app-shell {
+        position: relative;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(202,255,101,.06), rgba(202,255,101,0) 30%),
+          var(--paper);
+      }
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: .45;
+        background-image:
+          linear-gradient(rgba(11,16,13,.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(11,16,13,.04) 1px, transparent 1px);
+        background-size: 42px 42px;
+      }
+      .nav-link {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .02em;
+        transition: color .2s ease;
+      }
+      .nav-link:hover { color: #6e922d; }
+      .lime-button {
+        border: 1px solid var(--lime);
+        background: var(--lime);
+        color: var(--ink);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+      .lime-button:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 5px 5px 0 var(--paper);
+      }
+      .ink-shadow:hover { box-shadow: 5px 5px 0 var(--ink); }
+      .container { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+      .privacy-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        backdrop-filter: blur(10px);
+        background: rgba(244,247,239,.9);
+        border-bottom: 1px solid rgba(17,21,18,.15);
+      }
+      .privacy-main {
+        position: relative;
+        z-index: 1;
+      }
+      .hero {
+        padding: 72px 0 32px;
+      }
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.05fr .95fr;
+        gap: 42px;
+        align-items: center;
+      }
+      .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+      }
+      .hero-label .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 20px rgba(202,255,101,.9);
+      }
+      h1 {
+        margin: 18px 0 16px;
+        color: var(--ink);
+      }
+      .hero-copy {
+        max-width: 610px;
+        color: rgba(16,21,18,.74);
+        font-size: 1.06rem;
+        line-height: 1.75;
+      }
+      .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+      .primary-btn,
+      .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: .02em;
+      }
+      .primary-btn {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .secondary-btn {
+        background: transparent;
+        border: 1px solid rgba(16,21,18,.22);
+        color: var(--ink);
+      }
+      .hero-visual {
+        position: relative;
+        min-height: 420px;
+        display: grid;
+        place-items: center;
+      }
+      .privacy-browser {
+        position: relative;
+        width: min(540px, 100%);
+        border: 1px solid rgba(18,25,20,.14);
+        border-radius: 26px;
+        background: linear-gradient(180deg, rgba(16,21,18,.98), rgba(13,17,15,.96));
+        box-shadow: 0 26px 60px rgba(16,21,18,.18);
+        overflow: hidden;
+      }
+      .browser-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        border-bottom: 1px solid rgba(120,144,128,.2);
+        background: rgba(255,255,255,.02);
+      }
+      .traffic { display: flex; gap: 8px; }
+      .traffic span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.2);
+      }
+      .traffic span:nth-child(1) { background: #ff7d6d; }
+      .traffic span:nth-child(2) { background: #ffd166; }
+      .traffic span:nth-child(3) { background: #caff65; }
+      .browser-address {
+        width: min(250px, 46%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 28px;
+        border-radius: 999px;
+        border: 1px solid rgba(202,255,101,.18);
+        background: rgba(6,11,8,.8);
+        color: rgba(255,255,255,.66);
+        font: 700 10px/1 "Space Mono", monospace;
+        letter-spacing: .04em;
+      }
+      .browser-body {
+        position: relative;
+        display: grid;
+        grid-template-columns: 146px 1fr;
+        min-height: 350px;
+        background: rgba(10,14,12,.96);
+      }
+      .browser-sidebar {
+        padding: 18px 14px;
+        border-right: 1px solid rgba(122,140,126,.18);
+        background: rgba(21,28,24,.45);
+      }
+      .sidebar-pill {
+        height: 10px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: rgba(176,187,181,.2);
+      }
+      .sidebar-pill:nth-child(1) { width: 44%; }
+      .sidebar-pill:nth-child(2) { width: 67%; }
+      .sidebar-pill:nth-child(3) { width: 60%; }
+      .shield-box {
+        position: relative;
+        display: grid;
+        place-items: center;
+        margin: 34px auto 18px;
+        width: 88px;
+        height: 88px;
+        border-radius: 22px;
+        background: rgba(202,255,101,.1);
+        border: 1px solid rgba(202,255,101,.4);
+        box-shadow: inset 0 0 40px rgba(202,255,101,.08);
+      }
+      .shield-box::before {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border-radius: 18px;
+        border: 1px solid rgba(202,255,101,.3);
+      }
+      .shield-box svg { position: relative; z-index: 1; }
+      .network-box {
+        position: relative;
+        padding: 20px 18px 16px;
+        overflow: hidden;
+      }
+      .network-lines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .line {
+        position: absolute;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(202,255,101,.7), transparent);
+        animation: sweep 7s ease-in-out infinite;
+      }
+      .line.l1 { top: 72px; left: 10%; width: 68%; }
+      .line.l2 { top: 120px; left: 16%; width: 55%; animation-delay: .7s; }
+      .line.l3 { top: 168px; left: 20%; width: 62%; animation-delay: 1.2s; }
+      .line.l4 { top: 214px; left: 12%; width: 70%; animation-delay: 1.7s; }
+      .node {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 18px rgba(202,255,101,.9);
+      }
+      .node.n1 { top: 68px; left: 18%; }
+      .node.n2 { top: 118px; left: 67%; }
+      .node.n3 { top: 162px; left: 34%; }
+      .node.n4 { top: 212px; left: 74%; }
+      .filter-box {
+        position: absolute;
+        right: 16%;
+        top: 56%;
+        width: 84px;
+        height: 84px;
+        border-radius: 18px;
+        transform: translateY(-50%);
+        border: 1px solid rgba(202,255,101,.4);
+        background: rgba(202,255,101,.08);
+        display: grid;
+        place-items: center;
+        z-index: 2;
+      }
+      .filter-box::before {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 12px;
+        border: 1px solid rgba(202,255,101,.28);
+      }
+      .filter-box::after {
+        content: "";
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--lime);
+        opacity: .22;
+      }
+      .request-card {
+        position: absolute;
+        left: 14%;
+        bottom: 20px;
+        display: grid;
+        gap: 10px;
+        width: 150px;
+        padding: 12px 12px 14px;
+        border: 1px solid rgba(202,255,101,.18);
+        border-radius: 14px;
+        background: rgba(31,42,35,.85);
+        color: rgba(255,255,255,.88);
+      }
+      .request-card small {
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: rgba(202,255,101,.9);
+      }
+      .request-card strong {
+        font-size: 16px;
+        line-height: 1;
+      }
+      .stat-strip {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .stat-pill {
+        flex: 1;
+        min-height: 64px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(16,21,18,.04);
+        border: 1px solid rgba(16,21,18,.08);
+      }
+      .stat-pill strong {
+        display: block;
+        font-size: 24px;
+        letter-spacing: -.07em;
+      }
+      .stat-pill span {
+        display: block;
+        margin-top: 8px;
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: rgba(16,21,18,.7);
+      }
+      .section {
+        padding: 30px 0 18px;
+      }
+      .section-shell {
+        position: relative;
+        padding: 34px 32px;
+        border: 1px solid rgba(16,21,18,.12);
+        border-radius: 28px;
+        background: rgba(255,255,255,.18);
+        backdrop-filter: blur(2px);
+      }
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 26px;
+      }
+      .section-header h2 {
+        margin: 0;
+        font-size: clamp(30px, 3vw, 48px);
+        line-height: 1;
+        letter-spacing: -.07em;
+      }
+      .section-header p {
+        margin: 0;
+        max-width: 520px;
+        color: rgba(16,21,18,.72);
+        line-height: 1.7;
+      }
+      .lead {
+        font-size: 1.02rem;
+        line-height: 1.8;
+        color: rgba(16,21,18,.8);
+      }
+      .policy-grid {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 22px;
+        margin-top: 24px;
+      }
+      .policy-card,
+      .info-card,
+      .perm-card,
+      .mini-note {
+        border: 1px solid rgba(16,21,18,.12);
+        border-radius: 22px;
+        background: rgba(255,255,255,.28);
+      }
+      .policy-card {
+        padding: 28px 24px;
+      }
+      .big-answer {
+        font-size: clamp(54px, 7vw, 96px);
+        line-height: 0.82;
+        letter-spacing: -.09em;
+        color: var(--ink);
+        margin: 14px 0 20px;
+      }
+      .mini-label {
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(16,21,18,.7);
+      }
+      .info-card {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .info-card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: rgba(16,21,18,.8);
+        line-height: 1.8;
+      }
+      .policy-quote {
+        position: relative;
+        padding: 18px 18px 18px 20px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(202,255,101,.18), rgba(202,255,101,.03));
+        border: 1px solid rgba(202,255,101,.4);
+      }
+      .policy-quote::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 4px;
+        border-radius: 999px;
+        background: var(--lime);
+      }
+      .permissions-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 18px;
+        margin-top: 20px;
+      }
+      .perm-card {
+        padding: 22px 20px;
+        background: rgba(255,255,255,.18);
+      }
+      .perm-card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        letter-spacing: -.04em;
+      }
+      .perm-card p {
+        margin: 12px 0 0;
+        color: rgba(16,21,18,.74);
+        line-height: 1.7;
+      }
+      .table-shell {
+        margin-top: 26px;
+        overflow: hidden;
+        border: 1px solid rgba(16,21,18,.12);
+        border-radius: 22px;
+        background: rgba(255,255,255,.2);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 18px 20px;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid rgba(16,21,18,.08);
+      }
+      th {
+        background: rgba(16,21,18,.04);
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      td {
+        line-height: 1.7;
+        color: rgba(16,21,18,.8);
+      }
+      td:first-child {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .local-flow {
+        position: relative;
+        margin-top: 22px;
+        padding: 14px 0 10px;
+      }
+      .flow-track {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        min-height: 120px;
+      }
+      .flow-stage {
+        position: relative;
+        flex: 1;
+        max-width: 160px;
+        height: 95px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(16,21,18,.12);
+        border-radius: 18px;
+        background: rgba(255,255,255,.24);
+        font-weight: 700;
+        letter-spacing: -.03em;
+      }
+      .flow-stage .small {
+        font-size: 11px;
+        font-family: "Space Mono", monospace;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .flow-arrow {
+        position: relative;
+        width: 52px;
+        height: 2px;
+        background: rgba(16,21,18,.28);
+      }
+      .flow-arrow::after {
+        content: "";
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        transform: translateY(-50%);
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 10px solid rgba(16,21,18,.45);
+      }
+      .flow-dot {
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 20px rgba(202,255,101,.8);
+        animation: travel 3.5s ease-in-out infinite;
+      }
+      .flow-dot.d1 { left: 20%; top: 88%; }
+      .flow-dot.d2 { left: 38%; top: 88%; animation-delay: .5s; }
+      .flow-dot.d3 { left: 58%; top: 88%; animation-delay: 1s; }
+      .flow-dot.d4 { left: 78%; top: 88%; animation-delay: 1.5s; }
+      .flow-dot.blocked {
+        background: rgba(16,21,18,.2);
+        box-shadow: none;
+      }
+      .check-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .check-item {
+        display: flex;
+        gap: 12px;
+        align-items: start;
+        padding: 14px 16px;
+        border: 1px solid rgba(16,21,18,.12);
+        border-radius: 16px;
+        background: rgba(255,255,255,.18);
+      }
+      .check-item .mark {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: 9px;
+        background: rgba(202,255,101,.2);
+        border: 1px solid rgba(202,255,101,.3);
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .check-item p {
+        margin: 2px 0 0;
+        color: rgba(16,21,18,.8);
+        line-height: 1.7;
+      }
+      .contact-box {
+        padding: 26px 22px;
+        border-radius: 26px;
+        background: linear-gradient(135deg, rgba(16,21,18,.96), rgba(22,30,27,.96));
+        color: rgba(255,255,255,.9);
+      }
+      .contact-box h3 {
+        margin: 0;
+        font-size: clamp(28px, 3vw, 40px);
+        letter-spacing: -.06em;
+      }
+      .contact-placeholder {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 20px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(202,255,101,.4);
+        background: rgba(202,255,101,.08);
+        color: rgba(255,255,255,.92);
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+      }
+      .last-updated {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border: 1px solid rgba(16,21,18,.12);
+        border-radius: 999px;
+        background: rgba(255,255,255,.16);
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .stacked-mobile {
+        display: none;
+      }
+      @keyframes sweep {
+        0%,100% { transform: translateX(-8px); opacity: 0.3; }
+        50% { transform: translateX(22px); opacity: 1; }
+      }
+      @keyframes travel {
+        0% { transform: translateX(-16px); opacity: 0; }
+        20% { opacity: 1; }
+        75% { opacity: 1; }
+        100% { transform: translateX(180px); opacity: 0; }
+      }
+      @media (max-width: 840px) {
+        .hero-wrap,
+        .policy-grid {
+          grid-template-columns: 1fr;
+        }
+        .section-header {
+          display: block;
+        }
+        .section-header p {
+          margin-top: 14px;
+        }
+        .permissions-grid {
+          grid-template-columns: 1fr;
+        }
+        .flow-track {
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        .flow-arrow {
+          display: none;
+        }
+      }
+      @media (max-width: 760px) {
+        .desktop-nav { display: none; }
+        .mobile-toggle { display: grid; }
+        .privacy-header .container {
+          padding: 0 18px;
+        }
+        .section-shell {
+          padding: 24px 18px;
+        }
+        .browser-body {
+          grid-template-columns: 110px 1fr;
+        }
+        .request-card {
+          left: 8%;
+        }
+        .table-shell {
+          display: none;
+        }
+        .stacked-mobile {
+          display: grid;
+          gap: 12px;
+          margin-top: 22px;
+        }
+        .stack-card {
+          border: 1px solid rgba(16,21,18,.12);
+          border-radius: 18px;
+          background: rgba(255,255,255,.2);
+          overflow: hidden;
+        }
+        .stack-card .head {
+          padding: 12px 14px;
+          border-bottom: 1px solid rgba(16,21,18,.08);
+          background: rgba(16,21,18,.04);
+          font-family: "Space Mono", monospace;
+          font-size: 10px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+        }
+        .stack-card .body {
+          padding: 14px 14px 16px;
+          line-height: 1.7;
+          color: rgba(16,21,18,.8);
+        }
+        .stack-card .body strong {
+          display: block;
+          margin-bottom: 6px;
+          color: var(--ink);
+        }
+      }
+      @media (min-width: 761px) { .mobile-toggle { display: none; } }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <header class="privacy-header">
+        <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
+          <a href="/" aria-label="KLEAN home" style="display:flex;align-items:center;gap:12px;">
+            <span style="display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#caff65;color:#111714;font-weight:700;">K</span>
+            <span style="font-weight:700;letter-spacing:-.04em;">KLEAN</span>
+          </a>
+          <nav class="desktop-nav" style="display:flex;align-items:center;gap:26px;" aria-label="Main navigation">
+            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="../index.html#benefits">Benefits</a>
+            <a class="nav-link" href="../index.html#product">Product</a>
+            <a class="nav-link" href="./index.html" aria-current="page">Privacy</a>
+          </nav>
+          <div class="desktop-nav">
+            <a class="lime-button ink-shadow primary-btn" href="https://chromewebstore.google.com/search/KLEAN" target="_blank" rel="noopener noreferrer">Get KLEAN</a>
+          </div>
+          <button id="menuButton" class="mobile-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" style="display:none;place-items:center;width:40px;height:40px;border:1px solid rgba(16,21,18,.2);border-radius:10px;background:transparent;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+        </div>
+        <nav id="mobileMenu" aria-label="Mobile navigation" style="display:none;padding:0 20px 18px;background:rgba(17,23,20,.96);color:#f4f7ef;">
+          <div style="display:grid;gap:14px;padding-top:10px;">
+            <a href="../index.html">Home</a>
+            <a href="../index.html#benefits">Benefits</a>
+            <a href="../index.html#product">Product</a>
+            <a href="./index.html">Privacy</a>
+            <a class="lime-button" href="https://chromewebstore.google.com/search/KLEAN" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;height:44px;border-radius:999px;">Get KLEAN</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="privacy-main">
+        <section class="hero">
+          <div class="container hero-wrap">
+            <div>
+              <div class="eyebrow hero-label"><span class="dot"></span>Privacy Policy</div>
+              <h1 class="display">Privacy, without the fine print.</h1>
+              <p class="hero-copy">KLEAN is built to block ads and trackers locally in your browser. This policy explains what KLEAN accesses, what it stores, and what it does not collect.</p>
+              <div class="hero-actions">
+                <a class="primary-btn" href="#privacy-overview">Read the policy</a>
+                <a class="secondary-btn" href="../index.html">Back to KLEAN</a>
+              </div>
+            </div>
+
+            <div class="hero-visual" aria-label="Privacy policy illustration">
+              <div class="privacy-browser">
+                <div class="browser-top">
+                  <div class="traffic" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="browser-address">klean.app / privacy</div>
+                </div>
+                <div class="browser-body">
+                  <div class="browser-sidebar" aria-hidden="true">
+                    <div class="sidebar-pill"></div>
+                    <div class="sidebar-pill"></div>
+                    <div class="sidebar-pill"></div>
+                    <div class="shield-box">
+                      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 2.5L18.5 5V11.2C18.5 15.5 15.8 19.2 12 21.5C8.2 19.2 5.5 15.5 5.5 11.2V5L12 2.5Z" stroke="#CAFF65" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="M9 12.1L11.1 14.2L15.5 9.8" stroke="#CAFF65" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="network-box" aria-label="Local request filtering visualization">
+                    <div class="network-lines" aria-hidden="true">
+                      <span class="line l1"></span>
+                      <span class="line l2"></span>
+                      <span class="line l3"></span>
+                      <span class="line l4"></span>
+                      <span class="node n1"></span>
+                      <span class="node n2"></span>
+                      <span class="node n3"></span>
+                      <span class="node n4"></span>
+                    </div>
+                    <div class="filter-box" aria-hidden="true"></div>
+                    <div class="request-card">
+                      <small>Request filter</small>
+                      <strong>Blocked locally</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="privacy-overview" class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">About KLEAN</div>
+                <h2>Built for a calmer browser.</h2>
+              </div>
+              <p>KLEAN is a Chrome extension designed to reduce ad and tracking noise by filtering known advertising and tracking network requests directly in the browser.</p>
+            </div>
+
+            <div class="lead">
+              KLEAN is not a general-purpose cloud service, account dashboard, or ad-tech platform. The product is focused on making supported browsing cleaner and less distracting while keeping the core filtering work local to the browser.
+            </div>
+
+            <div class="policy-grid">
+              <div class="policy-card">
+                <div class="mini-label">Data practices</div>
+                <div class="big-answer">No.</div>
+                <p style="margin:0;line-height:1.8;color:rgba(16,21,18,.8);">KLEAN is designed around local browser-based filtering. Its core filtering functionality operates directly in the browser using bundled rules. KLEAN does not require a user account to perform its core blocking functionality.</p>
+              </div>
+              <div class="info-card">
+                <div class="mini-label">What KLEAN does not intentionally collect</div>
+                <ul>
+                  <li>Names</li>
+                  <li>Email addresses</li>
+                  <li>Passwords</li>
+                  <li>Payment information</li>
+                  <li>Health information</li>
+                  <li>Personal communications</li>
+                  <li>GPS or location data</li>
+                  <li>Browsing history sent to a remote server</li>
+                </ul>
+                <div class="policy-quote">KLEAN may access page and network information only insofar as it is needed to perform its filtering functions or respond to browser events when the user invokes extension controls.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">Permission overview</div>
+                <h2>Chrome Web Store Privacy Disclosure</h2>
+              </div>
+              <p>KLEAN’s Chrome Web Store privacy declarations describe the extension’s actual handling of user data and permissions. The permissions below are used to enable webpage and request filtering as part of the extension’s purpose.</p>
+            </div>
+
+            <div class="table-shell" aria-label="Chrome Web Store permissions table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Permission</th>
+                    <th>Why KLEAN needs it</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>declarativeNetRequest</td>
+                    <td>Block known advertising and tracking network requests using bundled filtering rules.</td>
+                  </tr>
+                  <tr>
+                    <td>activeTab</td>
+                    <td>Allow extension controls to interact with the currently active webpage when invoked by the user.</td>
+                  </tr>
+                  <tr>
+                    <td>storage</td>
+                    <td>Store extension preferences and applicable local statistics.</td>
+                  </tr>
+                  <tr>
+                    <td>webNavigation</td>
+                    <td>Respond to page navigation events required by the extension’s site-specific behavior.</td>
+                  </tr>
+                  <tr>
+                    <td>Host permissions</td>
+                    <td>Apply filtering and site controls across HTTP/HTTPS webpages.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="stacked-mobile" aria-label="Permissions on mobile">
+              <div class="stack-card">
+                <div class="head">declarativeNetRequest</div>
+                <div class="body"><strong>Why KLEAN needs it</strong> Block known advertising and tracking network requests using bundled filtering rules.</div>
+              </div>
+              <div class="stack-card">
+                <div class="head">activeTab</div>
+                <div class="body"><strong>Why KLEAN needs it</strong> Allow extension controls to interact with the currently active webpage when invoked by the user.</div>
+              </div>
+              <div class="stack-card">
+                <div class="head">storage</div>
+                <div class="body"><strong>Why KLEAN needs it</strong> Store extension preferences and applicable local statistics.</div>
+              </div>
+              <div class="stack-card">
+                <div class="head">webNavigation</div>
+                <div class="body"><strong>Why KLEAN needs it</strong> Respond to page navigation events required by the extension’s site-specific behavior.</div>
+              </div>
+              <div class="stack-card">
+                <div class="head">Host permissions</div>
+                <div class="body"><strong>Why KLEAN needs it</strong> Apply filtering and site controls across HTTP/HTTPS webpages.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">Local by design</div>
+                <h2>Your browser. Your rules. Your data.</h2>
+              </div>
+              <p>KLEAN performs its core filtering locally using bundled rules. The browser decides what request is blocked, what is allowed, and when an extension interaction is invoked.</p>
+            </div>
+
+            <div class="local-flow" aria-label="Request filtering flow">
+              <div class="flow-track">
+                <div class="flow-stage"><span>Browser</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-stage"><span>Network request</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-stage"><span>KLEAN filter</span></div>
+                <div class="flow-arrow"></div>
+                <div class="flow-stage"><span>Allowed / Blocked</span></div>
+              </div>
+              <span class="flow-dot d1"></span>
+              <span class="flow-dot d2"></span>
+              <span class="flow-dot d3"></span>
+              <span class="flow-dot d4 blocked"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">What KLEAN does</div>
+                <h2>Single-purpose browser filtering.</h2>
+              </div>
+              <p>KLEAN’s core purpose is to reduce ad and tracking noise by filtering known advertising and tracking requests while leaving the rest of the page available to the user.</p>
+            </div>
+
+            <div class="permissions-grid">
+              <article class="perm-card">
+                <div class="mini-label">declarativeNetRequest</div>
+                <h3>Request filtering</h3>
+                <p>KLEAN may use Chrome’s declarativeNetRequest API and bundled filtering rules to block known advertising and tracking network requests before they complete.</p>
+              </article>
+              <article class="perm-card">
+                <div class="mini-label">activeTab</div>
+                <h3>Active webpage interaction</h3>
+                <p>KLEAN may use activeTab for interactions with the currently active webpage when the user invokes extension controls, such as toggling site behavior or applying a current-page action.</p>
+              </article>
+              <article class="perm-card">
+                <div class="mini-label">storage</div>
+                <h3>Preferences and local stats</h3>
+                <p>Chrome storage may be used to retain extension preferences and local statistics where applicable. This is for user configuration and extension behavior, not for remote user profiling.</p>
+              </article>
+              <article class="perm-card">
+                <div class="mini-label">Host permissions</div>
+                <h3>Page-level enforcement</h3>
+                <p>Host permissions give KLEAN access to HTTP/HTTPS webpages so it can enforce page-level filtering and site controls where the extension is designed to operate.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">Third-party resources</div>
+                <h2>Included filter lists.</h2>
+              </div>
+              <p>KLEAN may use third-party filtering resources where applicable, including EasyList and EasyPrivacy. Those resources are provided by their respective third-party maintainers and are subject to their own licensing and attribution requirements.</p>
+            </div>
+
+            <div class="lead">KLEAN does not claim ownership of EasyList or EasyPrivacy. Applicable third-party licenses and attribution notices are included with the extension distribution where required.</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">User controls</div>
+                <h2>Controls stay with the user.</h2>
+              </div>
+              <p>KLEAN provides user controls for its protection features where supported by the extension. These controls are designed to let a user manage browser filtering behavior without requiring an external account or server-side profile.</p>
+            </div>
+
+            <div class="check-list">
+              <div class="check-item">
+                <div class="mark">✓</div>
+                <div>
+                  <strong>Browser-local settings</strong>
+                  <p>Settings are stored locally in browser storage where applicable so the extension can remember the user’s chosen preferences.</p>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="mark">✓</div>
+                <div>
+                  <strong>Site-specific controls</strong>
+                  <p>Where supported, KLEAN may expose page- or site-level controls to allow the user to manage how filtering applies on a particular site.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">Security</div>
+                <h2>Minimize unnecessary handling.</h2>
+              </div>
+              <p>KLEAN is designed to minimize unnecessary data handling and keep its core filtering functionality local. It does not rely on a remote executable code path for its main functionality.</p>
+            </div>
+
+            <div class="lead">KLEAN does not use remote executable JavaScript to perform its core filtering. In the current implementation, executable JavaScript is bundled with the extension rather than downloaded and executed remotely. This means the product’s main functionality is not built around a server-side processing pipeline.</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container section-shell">
+            <div class="section-header">
+              <div>
+                <div class="eyebrow" style="color:#5d715a;">Updates</div>
+                <h2>We may update this policy.</h2>
+              </div>
+              <p>We may update this Privacy Policy when KLEAN’s functionality, data practices, or applicable requirements change. The latest version will always be published on this page.</p>
+            </div>
+
+            <div class="last-updated">Last updated: September 2026</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container contact-box">
+            <div class="eyebrow" style="color:#caff65;">Privacy contact</div>
+            <h3>Questions about privacy?</h3>
+            <div class="contact-placeholder">Placeholder: replace with the real KLEAN privacy contact email before publishing.</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const menuButton = document.getElementById('menuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuButton.addEventListener('click', () => {
+        const isOpen = mobileMenu.style.display === 'block';
+        mobileMenu.style.display = isOpen ? 'none' : 'block';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      document.querySelectorAll('#mobileMenu a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.style.display = 'none';
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260918-05-13efa67","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script><script src="/_sdk/83d6dfdadcd4750a.telemetry_sdk.js" integrity="sha512-XS4Dvzp6vbagZS9vFErihvr8aO3S0tH78KWUefn06fmL4WYqryBtZj/IOLITYj7dFA4gPVvPg1W/JB1DK3uLNQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KLEAN — Browse cleaner</title>
+  <meta name="description" content="KLEAN helps make supported browsing calmer and cleaner.">
+  <link rel="icon" type="image/svg+xml" href="./logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    :root {
+      --ink: #101512;
+      --deep: #070a08;
+      --paper: #f4f7ef;
+      --lime: #caff65;
+      --line: #344039;
+      --muted: #aab5ac;
+      --orange: #ff9466;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      width: 100%;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .app-wrapper { width: 100%; overflow: hidden; background: var(--paper); }
+    .mono, .eyebrow { font-family: "Space Mono", monospace; }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .display { font-size: clamp(42px, 5.8vw, 82px); letter-spacing: -.075em; line-height: .92; }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      transition: color .2s ease;
+    }
+    .nav-link:hover { color: #6e922d; }
+
+    .lime-button {
+      border: 1px solid var(--lime);
+      background: var(--lime);
+      color: var(--ink);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .lime-button:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--paper); }
+    .ink-shadow:hover { box-shadow: 5px 5px 0 var(--ink); }
+
+    .hero-grid, .demo-grid {
+      background-image:
+        linear-gradient(rgba(202,255,101,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(202,255,101,.08) 1px, transparent 1px);
+      background-size: 46px 46px;
+    }
+    .noise {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image: radial-gradient(rgba(255,255,255,.65) .55px, transparent .55px);
+      background-size: 5px 5px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 760px;
+      height: 760px;
+      top: -290px;
+      right: -250px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(202,255,101,.26), rgba(202,255,101,0) 67%);
+    }
+
+    .custom-cursor, .cursor-ring {
+      position: fixed;
+      z-index: 80;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: width .2s ease, height .2s ease, opacity .2s ease, background .2s ease;
+    }
+    .custom-cursor {
+      width: 11px;
+      height: 11px;
+      background: var(--lime);
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      width: 35px;
+      height: 35px;
+      border: 1px solid rgba(202,255,101,.9);
+      transition: width .25s ease, height .25s ease, opacity .2s ease;
+    }
+    body.cursor-ready .custom-cursor, body.cursor-ready .cursor-ring { opacity: 1; }
+    body.cursor-hover .custom-cursor { width: 20px; height: 20px; }
+    body.cursor-hover .cursor-ring { width: 52px; height: 52px; opacity: .55; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .72s ease, transform .72s cubic-bezier(.16,.8,.28,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-one { transition-delay: .12s; }
+    .delay-two { transition-delay: .24s; }
+
+    .hero-stage { position: relative; min-height: 485px; }
+    .orbit {
+      position: absolute;
+      border: 1px solid rgba(202,255,101,.28);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .orbit.one { width: 590px; height: 590px; right: -105px; top: -70px; animation: spin 24s linear infinite; }
+    .orbit.two { width: 400px; height: 400px; right: -8px; top: 28px; animation: spin-reverse 18s linear infinite; }
+    .orbit-dot {
+      position: absolute;
+      top: 8%;
+      left: 17%;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 15px var(--lime);
+    }
+
+    .browser-shell {
+      position: absolute;
+      z-index: 3;
+      right: 1%;
+      top: 68px;
+      width: min(570px, 96%);
+      overflow: hidden;
+      border: 1px solid #405047;
+      border-radius: 20px;
+      background: #111813;
+      box-shadow: 0 35px 70px rgba(0,0,0,.5);
+      transform: rotate(-3deg);
+      transition: transform .35s cubic-bezier(.16,.8,.28,1);
+      animation: float-browser 6s ease-in-out infinite;
+    }
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      height: 46px;
+      padding: 0 15px;
+      border-bottom: 1px solid #2c3931;
+      background: #151d18;
+    }
+    .traffic { display: flex; gap: 5px; }
+    .traffic span { width: 7px; height: 7px; border-radius: 50%; background: #5a675f; }
+    .traffic span:nth-child(1) { background: #ff7465; }
+    .traffic span:nth-child(2) { background: #ffc35b; }
+    .traffic span:nth-child(3) { background: #b7e95f; }
+    .fake-url {
+      width: 220px;
+      height: 23px;
+      padding: 0 9px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #2d3a32;
+      border-radius: 7px;
+      color: #849187;
+      background: #0e1410;
+      font: 8px "Space Mono", monospace;
+    }
+    .browser-content { display: grid; grid-template-columns: 92px 1fr; height: 335px; background: #0c110e; }
+    .browser-sidebar { padding: 19px 12px; border-right: 1px solid #29352e; }
+    .tiny-logo { display: flex; align-items: center; gap: 4px; color: #edf3eb; font-size: 10px; font-weight: 700; }
+    .tiny-logo b { width: 12px; height: 9px; border-radius: 3px; background: #ff4e4e; }
+    .side-line { height: 7px; margin-top: 13px; border-radius: 4px; background: #26342b; }
+    .side-line.short { width: 67%; }
+    .browser-page { position: relative; padding: 20px; overflow: hidden; }
+    .page-title-line { width: 44%; height: 16px; border-radius: 5px; background: #e6ece3; }
+    .page-copy-line { width: 27%; height: 7px; margin-top: 10px; border-radius: 4px; background: #526056; }
+    .video-window {
+      position: relative;
+      height: 129px;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: linear-gradient(135deg,#2c5f55,#193628 48%,#617547);
+    }
+    .mountains {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 74%;
+      background:
+        linear-gradient(140deg,transparent 37%,#13291f 38% 53%,transparent 54%),
+        linear-gradient(40deg,transparent 44%,#789467 45% 61%,transparent 62%);
+    }
+    .play-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 50%;
+      color: #142017;
+      background: rgba(255,255,255,.92);
+      transform: translate(-50%,-50%);
+    }
+    .content-lines { display: grid; gap: 9px; margin-top: 17px; }
+    .content-lines span { height: 8px; border-radius: 4px; background: #2d3931; }
+    .content-lines span:nth-child(1) { width: 82%; }
+    .content-lines span:nth-child(2) { width: 60%; }
+    .content-lines span:nth-child(3) { width: 74%; }
+
+    .extension-card {
+      position: absolute;
+      z-index: 5;
+      top: 27px;
+      right: -5px;
+      width: 228px;
+      padding: 14px;
+      border: 1px solid #557044;
+      border-radius: 16px;
+      background: #172119;
+      box-shadow: 0 19px 34px rgba(0,0,0,.43);
+      animation: float-card 5s ease-in-out infinite;
+    }
+    .extension-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #30422f; }
+    .k-icon { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 7px; color: var(--ink); background: var(--lime); font-size: 16px; font-weight: 700; }
+    .mini-stat { padding: 8px; border: 1px solid #30422f; border-radius: 8px; background: #111912; }
+    .mini-stat strong { display: block; color: var(--lime); font-size: 14px; }
+    .mini-stat span { color: #c1cbc2; font-size: 7px; }
+    .scan {
+      position: absolute;
+      right: 0;
+      left: 0;
+      z-index: 6;
+      height: 2px;
+      background: linear-gradient(90deg,transparent,var(--lime),transparent);
+      box-shadow: 0 0 15px var(--lime);
+      animation: scan 3.5s ease-in-out infinite;
+    }
+    .float-tag {
+      position: absolute;
+      z-index: 7;
+      padding: 10px 13px;
+      border: 1px solid rgba(202,255,101,.6);
+      border-radius: 11px;
+      color: var(--paper);
+      background: rgba(8,13,10,.87);
+      box-shadow: 0 12px 25px rgba(0,0,0,.25);
+      backdrop-filter: blur(10px);
+    }
+    .tag-one { left: 0; top: 18px; animation: float-card 4s ease-in-out infinite reverse; }
+    .tag-two { bottom: 9px; left: 7%; animation: float-card 6s ease-in-out infinite; }
+
+    .ticker { overflow: hidden; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--lime); }
+    .ticker-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+    .ticker-line { display: flex; align-items: center; gap: 26px; padding: 14px 26px; white-space: nowrap; font-size: clamp(23px,3vw,40px); font-weight: 700; letter-spacing: -.06em; }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #b8c5b4;
+      background: #edf1e9;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .feature-card:hover { transform: translateY(-8px) rotate(-.5deg); box-shadow: 8px 9px 0 var(--ink); }
+    .feature-card::after {
+      position: absolute;
+      right: -38px;
+      bottom: -50px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      content: "";
+      opacity: .55;
+      background: radial-gradient(circle,var(--lime),transparent 68%);
+    }
+    .icon-tile { display: grid; width: 50px; height: 50px; place-items: center; border: 1px solid #8caa70; border-radius: 14px; background: #e4ffc0; }
+
+    .demo-shell {
+      position: relative;
+      min-height: 465px;
+      overflow: hidden;
+      border: 1px solid #405247;
+      background: #0f1611;
+      box-shadow: 0 24px 48px rgba(0,0,0,.22);
+    }
+    .demo-browser {
+      position: absolute;
+      inset: 24px;
+      padding: 20px;
+      border: 1px solid rgba(202,255,101,.5);
+      background: linear-gradient(140deg,rgba(202,255,101,.11),rgba(202,255,101,.02));
+    }
+    .demo-toolbar { display: flex; justify-content: space-between; color: #caff65; font: 8px "Space Mono", monospace; letter-spacing: .04em; }
+    .clean-card {
+      position: absolute;
+      z-index: 4;
+      top: 50%;
+      left: 50%;
+      width: min(360px,76%);
+      padding: 23px;
+      border: 1px solid #dce7d9;
+      border-radius: 7px;
+      color: #142017;
+      background: #eef4e9;
+      box-shadow: 0 9px 0 rgba(202,255,101,.38);
+      transform: translate(-50%,-50%);
+    }
+    .clean-card::after { display: block; width: 72%; height: 4px; margin-top: 10px; border-radius: 4px; content: ""; background: #405042; box-shadow: 0 9px 0 #405042, 0 18px 0 #caff65; }
+    .clutter {
+      position: absolute;
+      z-index: 3;
+      width: 126px;
+      padding: 12px;
+      border: 1px solid #070a08;
+      color: #101512;
+      box-shadow: 5px 6px 0 #070a08;
+      transition: opacity .7s ease, transform .7s cubic-bezier(.16,.8,.28,1);
+    }
+    .clutter p { margin: 0; font: 8px "Space Mono", monospace; font-weight: 700; }
+    .clutter span { display: block; margin-top: 9px; font-size: 13px; font-weight: 700; line-height: 1; }
+    .clutter.one { top: 18%; left: 7%; background: var(--orange); transform: rotate(-9deg); }
+    .clutter.two { top: 11%; right: 6%; background: #ffd06a; transform: rotate(8deg); }
+    .clutter.three { right: 15%; bottom: 12%; background: #ee7fa6; transform: rotate(-4deg); }
+    .clutter.four { top: 43%; left: 3%; background: #9ed8ff; transform: rotate(6deg); }
+    .clutter.five { right: 4%; bottom: 31%; background: #d9b7ff; transform: rotate(-7deg); }
+    .youtube-ad {
+      position: absolute;
+      z-index: 5;
+      right: 23%;
+      bottom: 7%;
+      width: 184px;
+      padding: 10px;
+      border: 1px solid #111714;
+      color: #f4f7ef;
+      background: #242c27;
+      box-shadow: 5px 6px 0 #070a08;
+      transition: opacity .7s ease, transform .7s cubic-bezier(.16,.8,.28,1);
+      transform: rotate(3deg);
+    }
+    .youtube-ad .ad-thumb { position: relative; height: 58px; overflow: hidden; background: linear-gradient(135deg,#b73c35,#3d2221 55%,#d47a47); }
+    .youtube-ad .ad-thumb::after { position: absolute; inset: 50% auto auto 50%; width: 0; height: 0; content: ""; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 16px solid #fff; transform: translate(-35%,-50%); }
+    .youtube-ad p { margin: 8px 0 0; font: 8px "Space Mono", monospace; font-weight: 700; }
+    .youtube-ad span { display: block; margin-top: 4px; color: #caff65; font-size: 10px; font-weight: 700; }
+    .cookie-banner, .newsletter-pop, .autoplay-card {
+      position: absolute;
+      z-index: 5;
+      padding: 11px;
+      border: 1px solid #111714;
+      color: #101512;
+      background: #f7f1dc;
+      box-shadow: 5px 6px 0 #070a08;
+      transition: opacity .7s ease, transform .7s cubic-bezier(.16,.8,.28,1);
+    }
+    .cookie-banner { left: 17%; bottom: 8%; width: 168px; transform: rotate(-2deg); }
+    .cookie-banner p, .newsletter-pop p, .autoplay-card p { margin: 0; font: 8px "Space Mono", monospace; font-weight: 700; }
+    .cookie-banner span { display: block; margin-top: 6px; font-size: 9px; line-height: 1.2; }
+    .cookie-banner b { display: inline-block; margin-top: 8px; padding: 4px 7px; color: #f4f7ef; background: #101512; font-size: 8px; }
+    .newsletter-pop { top: 27%; right: 10%; width: 145px; background: #caff65; transform: rotate(4deg); }
+    .newsletter-pop strong { display: block; margin-top: 7px; font-size: 13px; line-height: 1; }
+    .newsletter-pop span { display: block; margin-top: 6px; font-size: 8px; }
+    .newsletter-pop b { display: block; margin-top: 9px; padding: 5px; text-align: center; color: #f4f7ef; background: #101512; font-size: 8px; }
+    .autoplay-card { top: 8%; left: 34%; width: 130px; color: #f4f7ef; background: #27352c; transform: rotate(-5deg); }
+    .autoplay-card div { height: 42px; margin-top: 7px; background: linear-gradient(135deg,#8d4438,#263d55 55%,#c28a51); }
+    .autoplay-card span { display: block; margin-top: 6px; color: #caff65; font-size: 8px; }
+    .demo-shell.cleared .clutter { opacity: 0; }
+    .demo-shell.cleared .youtube-ad { opacity: 0; transform: translate(180px,145px) rotate(20deg); }
+    .demo-shell.cleared .clutter.one { transform: translate(-190px,-120px) rotate(-27deg); }
+    .demo-shell.cleared .clutter.two { transform: translate(190px,-120px) rotate(28deg); }
+    .demo-shell.cleared .clutter.three { transform: translate(165px,145px) rotate(-18deg); }
+    .demo-shell.cleared .cookie-banner { opacity: 0; transform: translate(-180px,145px) rotate(-20deg); }
+    .demo-shell.cleared .newsletter-pop { opacity: 0; transform: translate(180px,-145px) rotate(22deg); }
+    .demo-shell.cleared .autoplay-card { opacity: 0; transform: translate(-20px,-180px) rotate(-28deg); }
+
+    .toggle-switch { width: 37px; height: 20px; padding: 3px; display: flex; justify-content: flex-end; border-radius: 999px; background: var(--lime); transition: background .25s; }
+    .toggle-switch i { display: block; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+    .toggle-switch.off { justify-content: flex-start; background: #47534c; }
+
+    .developer-panel {
+      position: relative;
+      overflow: hidden;
+      width: min(930px, 100%);
+      margin: 0 auto 28px;
+      padding: 1px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(202,255,101,.7), rgba(202,255,101,.1), rgba(16,21,18,.1));
+      box-shadow: 0 18px 40px rgba(11,17,12,.1);
+    }
+    .developer-panel-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 22px;
+      border-radius: 27px;
+      background: linear-gradient(135deg, rgba(16,21,18,.98), rgba(20,28,24,.96));
+      color: #f4f7ef;
+      isolation: isolate;
+    }
+    .developer-panel-inner::before {
+      position: absolute;
+      inset: -30% auto auto -18%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      content: "";
+      background: radial-gradient(circle, rgba(202,255,101,.14), transparent 64%);
+      z-index: -1;
+    }
+    .developer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid rgba(202,255,101,.3);
+      border-radius: 999px;
+      background: rgba(202,255,101,.08);
+      color: var(--lime);
+      font: 700 9px "Space Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      animation: pulseBadge 3.2s ease-in-out infinite;
+    }
+    .developer-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .developer-copy strong {
+      font-size: clamp(28px, 2vw, 38px);
+      line-height: 1;
+      letter-spacing: -.065em;
+    }
+    .developer-copy span {
+      color: rgba(244,247,239,.72);
+      font-size: 14px;
+    }
+    .developer-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(202,255,101,.2);
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 10px 20px rgba(202,255,101,.18);
+    }
+    .developer-link:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 rgba(17,23,20,.9);
+    }
+
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: block; }
+
+    @keyframes float-browser { 50% { transform: translateY(-15px) rotate(-1deg); } }
+    @keyframes float-card { 50% { transform: translateY(-11px) rotate(1deg); } }
+    @keyframes pulseBadge { 0%,100% { box-shadow: 0 0 0 rgba(202,255,101,0); } 50% { box-shadow: 0 0 18px rgba(202,255,101,.25); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin-reverse { to { transform: rotate(-360deg); } }
+    @keyframes scan { 0%,100% { top: 13%; opacity: 0; } 30%,70% { opacity: 1; } 50% { top: 90%; } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    @media (max-width: 760px) {
+      .desktop-nav { display: none; }
+      .mobile-toggle { display: grid; }
+      .display { font-size: clamp(42px, 12vw, 62px); }
+      .hero-stage { min-height: 418px; }
+      .browser-shell { top: 66px; right: -6px; width: 95%; }
+      .browser-content { height: 285px; }
+      .extension-card { width: 205px; }
+      .tag-two { left: 0; }
+      .demo-shell { min-height: 430px; }
+      .clutter { transform: scale(.78) !important; }
+      .clutter.one { left: -20px; }
+      .clutter.two { right: -26px; }
+      .clutter.three { right: 1%; bottom: 6%; }
+      .demo-shell.cleared .clutter.one { transform: translate(-180px,-105px) rotate(-27deg) scale(.78) !important; }
+      .demo-shell.cleared .clutter.two { transform: translate(180px,-105px) rotate(27deg) scale(.78) !important; }
+      .demo-shell.cleared .clutter.three { transform: translate(150px,120px) rotate(-18deg) scale(.78) !important; }
+    }
+    @media (min-width: 761px) { .mobile-toggle { display: none; } }
+    @media (pointer: coarse) { .custom-cursor, .cursor-ring { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/8de366929c5f3b48.data_sdk.js" type="text/javascript" integrity="sha512-TyQ8k8cZj66xe/aENmn6RyZpdOFZXbAo5+KBG3PeFM+Q4qMTHU8xAqmq4ADClNfPrstgQYV6OzZHwLTnElzB2g=="></script>
+  <script src="/_sdk/0ddbbee1c66b1212.editing_sdk.js" type="text/javascript" integrity="sha512-HQn5LM1yruQSbY78ATUril6QeOJ9xj7KqO64ltLtb4vBwI5Qv3/tloFFOndBPZTNZoeV5xKzuth5y6FTi9crsg=="></script>
+  <script src="/_sdk/765e1fea0cec97ce.resizing_sdk.js" type="text/javascript" integrity="sha512-IRTJnqww0+HQ5V/LlWEQrlD5SrYHaVvaeVoNe8HYQXoaguzUGheSd9+n9s6WOgaTcEH0g37DuINHZ9aqfzWjlw=="></script>
+ </head>
+ <body data-template-id="__page-root">
+  <div class="custom-cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="app-wrapper">
+   <header class="sticky top-0 z-30 w-full border-b border-[#253029] bg-[#f4f7ef]/95 backdrop-blur">
+    <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-10"><a href="#top" class="flex items-center gap-2" aria-label="KLEAN home"> <span class="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-[#caff65] p-1"><img src="./logo.svg" alt="KLEAN logo" class="h-full w-full object-cover" /></span> <span data-template-id="brand-name" class="canva-text font-bold tracking-tight"></span> </a>
+     <nav class="desktop-nav flex items-center gap-7" aria-label="Main navigation"><a class="nav-link" href="#benefits">Benefits</a> <a class="nav-link" href="#product">Product</a> <a class="nav-link" href="./privacy/index.html">Privacy</a>
+     </nav>
+     <div class="desktop-nav"><button data-template-id="nav-cta" class="canva-button lime-button ink-shadow rounded-full px-4 py-2 text-xs font-bold" type="button" data-install></button>
+     </div><button id="menuButton" class="mobile-toggle h-10 w-10 place-items-center border border-black" type="button" aria-label="Open navigation menu" aria-expanded="false"> <i data-lucide="menu" width="18"></i> </button>
+    </div>
+    <nav id="mobileMenu" class="mobile-menu bg-[#111714] px-5 py-6 text-[#f4f7ef]" aria-label="Mobile navigation">
+     <div class="grid gap-5"><a href="#benefits">Benefits</a> <a href="#product">Product</a> <a href="./privacy/index.html">Privacy</a> <button data-template-id="mobile-cta" class="canva-button lime-button rounded-full py-3 font-bold" type="button" data-install></button>
+     </div>
+    </nav>
+   </header>
+   <main id="top">
+    <section class="hero-grid relative w-full overflow-hidden bg-[#101512] text-[#f4f7ef]">
+     <div class="noise"></div>
+     <div class="hero-glow"></div>
+     <div class="relative mx-auto max-w-7xl px-5 pb-20 pt-16 md:px-10 md:pb-28 md:pt-24">
+      <div class="grid items-center gap-12 lg:grid-cols-[.82fr_1.18fr]">
+       <div class="relative z-10">
+        <p data-template-id="hero-kicker" class="canva-text eyebrow reveal text-[#caff65]"></p>
+        <h1 data-template-id="hero-title" class="canva-text display delay-one reveal mt-5 max-w-xl font-bold"></h1>
+        <p data-template-id="hero-copy" class="canva-text delay-two reveal mt-7 max-w-md leading-relaxed text-[#c6cec4]"></p>
+        <div class="delay-two reveal mt-8 flex flex-wrap gap-3"><button data-template-id="hero-cta" class="canva-button lime-button rounded-full px-5 py-3 text-sm font-bold" type="button" data-install></button> <a data-template-id="hero-secondary" class="canva-link rounded-full border border-[#f4f7ef] px-5 py-3 text-sm font-bold transition-colors hover:bg-[#f4f7ef] hover:text-[#101512]" href="#product"></a>
+        </div>
+        <div class="mono mt-12 flex gap-7 text-xs text-[#b7c1b4]"><span><b class="text-[#caff65]">01</b> Quiet by design</span> <span><b class="text-[#caff65]">02</b> Built for focus</span>
+        </div>
+       </div>
+       <div id="heroStage" class="hero-stage delay-one reveal" aria-label="Illustration of KLEAN protecting a browser window">
+        <div class="orbit one">
+         <span class="orbit-dot"></span>
+        </div>
+        <div class="orbit two"></div>
+        <div class="float-tag tag-one"><span class="eyebrow text-[#caff65]">Protection</span>
+         <p class="mt-1 text-sm font-bold">Status: ON</p>
+        </div>
+        <div class="float-tag tag-two">
+         <p class="mono text-[9px] text-[#caff65]">LESS NOISE</p>
+         <p class="mt-1 text-sm font-bold">More room to think.</p>
+        </div>
+        <div id="browserShell" class="browser-shell">
+         <div class="browser-bar">
+          <div class="traffic">
+           <span></span><span></span><span></span>
+          </div>
+          <div class="fake-url">
+           klean.app / browse-light
+          </div>
+         </div>
+         <div class="browser-content">
+          <div class="browser-sidebar">
+           <div class="tiny-logo">
+            <b></b>tube
+           </div>
+           <div class="side-line"></div>
+           <div class="side-line short"></div>
+           <div class="side-line"></div>
+           <div class="side-line short"></div>
+           <div class="side-line"></div>
+          </div>
+          <div class="browser-page">
+           <div class="page-title-line"></div>
+           <div class="page-copy-line"></div>
+           <div class="video-window">
+            <div class="mountains"></div>
+            <div class="play-dot">
+             <i data-lucide="play" width="16"></i>
+            </div>
+           </div>
+           <div class="content-lines">
+            <span></span><span></span><span></span>
+           </div>
+          </div>
+         </div>
+         <div class="scan"></div>
+         <div class="extension-card">
+          <div class="extension-head">
+           <div class="flex items-center gap-2">
+            <span class="k-icon">K</span><b class="text-xs">KLEAN</b>
+           </div><i data-lucide="settings-2" width="14" class="text-[#caff65]"></i>
+          </div>
+          <p class="mt-3 text-[10px] text-[#e9eee8]">Protection is <b class="text-[#caff65]">ON</b></p>
+          <p class="mt-1 text-[8px] text-[#aab5ac]">A cleaner, faster, safer web.</p>
+          <div class="mt-3 grid grid-cols-2 gap-2">
+           <div class="mini-stat">
+            <strong>1,055</strong><span>Ads blocked</span>
+           </div>
+           <div class="mini-stat">
+            <strong>990</strong><span>Trackers blocked</span>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="ticker" aria-label="KLEAN benefits">
+     <div class="ticker-track">
+      <div class="ticker-line">
+       BLOCK THE JUNK <i data-lucide="asterisk"></i> KEEP WHAT MATTERS <i data-lucide="asterisk"></i> BROWSE LIGHTER <i data-lucide="asterisk"></i> STAY FOCUSED <i data-lucide="asterisk"></i>
+      </div>
+      <div class="ticker-line">
+       BLOCK THE JUNK <i data-lucide="asterisk"></i> KEEP WHAT MATTERS <i data-lucide="asterisk"></i> BROWSE LIGHTER <i data-lucide="asterisk"></i> STAY FOCUSED <i data-lucide="asterisk"></i>
+      </div>
+     </div>
+    </section>
+    <section id="benefits" class="w-full px-5 py-20 md:px-10 md:py-28">
+     <div class="mx-auto max-w-7xl">
+      <div class="items-end justify-between gap-8 md:flex">
+       <div>
+        <p class="eyebrow">A better tab, in motion</p>
+        <h2 data-template-id="benefits-title" class="canva-text display reveal mt-4 max-w-2xl font-bold"></h2>
+       </div>
+       <p data-template-id="benefits-copy" class="canva-text delay-one reveal mt-7 max-w-sm leading-relaxed md:mt-0"></p>
+      </div>
+      <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+       <article data-template-id="feature-one-card" class="canva-card feature-card reveal rounded-2xl p-7">
+        <div class="icon-tile">
+         <i data-lucide="shield-check" width="23"></i>
+        </div>
+        <p class="mono mt-9 text-[10px] text-[#6b7c6e]">01 / FILTER</p>
+        <h3 data-template-id="feature-one-title" class="canva-text mt-3 font-bold"></h3>
+        <p data-template-id="feature-one-copy" class="canva-text mt-3 max-w-xs text-sm leading-relaxed"></p>
+       </article>
+       <article data-template-id="feature-two-card" class="canva-card feature-card delay-one reveal rounded-2xl p-7">
+        <div class="icon-tile">
+         <i data-lucide="eye-off" width="23"></i>
+        </div>
+        <p class="mono mt-9 text-[10px] text-[#6b7c6e]">02 / DEFLECT</p>
+        <h3 data-template-id="feature-two-title" class="canva-text mt-3 font-bold"></h3>
+        <p data-template-id="feature-two-copy" class="canva-text mt-3 max-w-xs text-sm leading-relaxed"></p>
+       </article>
+       <article data-template-id="feature-three-card" class="canva-card feature-card delay-two reveal rounded-2xl p-7">
+        <div class="icon-tile">
+         <i data-lucide="zap" width="23"></i>
+        </div>
+        <p class="mono mt-9 text-[10px] text-[#6b7c6e]">03 / BREATHE</p>
+        <h3 data-template-id="feature-three-title" class="canva-text mt-3 font-bold"></h3>
+        <p data-template-id="feature-three-copy" class="canva-text mt-3 max-w-xs text-sm leading-relaxed"></p>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section id="product" class="w-full overflow-hidden bg-[#101512] px-5 py-20 text-[#f4f7ef] md:px-10 md:py-28">
+     <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[.78fr_1.22fr] lg:gap-20">
+      <div class="reveal">
+       <p class="eyebrow text-[#caff65]">Watch the clutter get out of the way</p>
+       <h2 data-template-id="product-title" class="canva-text display mt-4 font-bold"></h2>
+       <p data-template-id="product-copy" class="canva-text mt-7 max-w-md leading-relaxed text-[#c4cec1]"></p><button id="clearClutter" data-template-id="clear-clutter-button" class="canva-button lime-button mt-8 rounded-full px-5 py-3 text-sm font-bold" type="button"> <span data-template-id="clear-clutter-label" class="canva-text"></span> <span data-template-id="restore-clutter-label" class="canva-text hidden"></span> </button>
+      </div>
+      <div id="demoShell" class="demo-shell demo-grid delay-one reveal">
+       <div class="demo-browser">
+        <div class="demo-toolbar">
+         <span>KLEAN / ACTIVE</span><span>SCROLL TO CLEAN →</span>
+        </div>
+        <div class="clutter one">
+         <p>SPONSORED</p><span>FLASH SALE!</span>
+        </div>
+        <div class="clutter two">
+         <p>NEW OFFER</p><span>CLICK NOW</span>
+        </div>
+        <div class="clutter three">
+         <p>RECOMMENDED</p><span>DON'T MISS</span>
+        </div>
+        <div class="clutter four">
+         <p>LIMITED TIME</p><span>GET 70% OFF</span>
+        </div>
+        <div class="clutter five">
+         <p>YOU MAY LIKE</p><span>TRY THIS NOW</span>
+        </div>
+        <div class="youtube-ad" aria-label="Video advertisement overlay">
+         <div class="ad-thumb"></div>
+         <p>ADVERTISEMENT · 0:15</p><span>Skip ad ›</span>
+        </div>
+        <div class="cookie-banner" aria-label="Cookie consent banner">
+         <p>THIS SITE USES COOKIES</p><span>We value your privacy. Manage your preferences.</span><b>ACCEPT ALL</b>
+        </div>
+        <div class="newsletter-pop" aria-label="Newsletter pop-up">
+         <p>DON'T MISS OUT</p><strong>Get 10% off</strong><span>Join our newsletter for more offers.</span><b>SUBSCRIBE</b>
+        </div>
+        <div class="autoplay-card" aria-label="Autoplay video promotion">
+         <p>AUTOPLAYING NOW</p>
+         <div></div><span>Mute · Watch next</span>
+        </div>
+        <div class="clean-card">
+         <p class="mono text-[8px]">THE ACTUAL PAGE</p>
+         <h3 data-template-id="demo-card-title" class="canva-text mt-2 text-3xl font-bold tracking-[-.07em]"></h3>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="w-full bg-[#caff65] px-5 py-20 md:px-10 md:py-28">
+     <div class="mx-auto grid max-w-7xl items-end gap-8 border-y border-[#111714] py-12 md:grid-cols-[1fr_auto] md:py-16">
+      <div>
+       <p class="eyebrow">One cleaner click away</p>
+       <h2 data-template-id="final-title" class="canva-text display mt-5 font-bold"></h2>
+       <p data-template-id="final-copy" class="canva-text mt-6 max-w-md leading-relaxed"></p>
+      </div><button data-template-id="final-cta" class="canva-button rounded-full bg-[#111714] px-6 py-4 font-bold text-[#f4f7ef] transition-transform hover:scale-[1.03]" type="button" data-install></button>
+     </div>
+    </section>
+   </main>
+   <footer class="w-full bg-[#101512] px-5 py-10 text-[#f4f7ef] md:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row">
+     <div>
+      <div class="flex items-center gap-2"><span class="flex h-7 w-7 items-center justify-center overflow-hidden rounded-md bg-[#caff65] p-1"><img src="./logo.svg" alt="KLEAN logo" class="h-full w-full object-cover" /></span> <span data-template-id="footer-brand" class="canva-text font-bold"></span>
+      </div>
+      <p data-template-id="footer-copy" class="canva-text mt-3 text-sm text-[#b6c1b3]"></p>
+     </div>
+     <div class="flex flex-col items-start gap-3 md:items-end">
+      <a href="./privacy/index.html" class="nav-link text-[#f4f7ef] hover:text-[#caff65]">Privacy Policy</a>
+      <p data-template-id="footer-meta" class="canva-text mono flex items-end text-[10px] text-[#9bab98]"></p>
+     </div>
+    </div>
+    <div class="mx-auto mt-6 max-w-4xl">
+     <div class="developer-panel reveal">
+      <div class="developer-panel-inner">
+       <div class="developer-copy">
+        <div class="developer-badge">Developed by</div>
+        <strong>Karan Sethi</strong>
+        <span>Building occasionally bold digital experiences.</span>
+       </div>
+       <a class="developer-link" href="https://karansethi.xx.kg/" target="_blank" rel="noopener noreferrer">Visit my site</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const localCopy = {
+      'brand-name': 'KLEAN',
+      'nav-cta': 'Get KLEAN',
+      'mobile-cta': 'Get KLEAN',
+      'hero-kicker': 'A calmer way to browse',
+      'hero-title': 'Browse lighter. Stay focused.',
+      'hero-copy': 'KLEAN clears the noise between you and the things you came to see. Less distraction, more room to think.',
+      'hero-cta': 'Add KLEAN to Chrome',
+      'hero-secondary': 'See how it works',
+      'benefits-title': 'The web, with the volume turned down.',
+      'benefits-copy': 'KLEAN quietly filters the interruptions that pull you away from what matters.',
+      'feature-one-title': 'Block the junk.',
+      'feature-one-copy': 'Remove ads, pop-ups, and visual clutter before they take over the page.',
+      'feature-two-title': 'Protect your attention.',
+      'feature-two-copy': 'Deflect trackers and distractions so every tab feels more intentional.',
+      'feature-three-title': 'Keep your flow.',
+      'feature-three-copy': 'A faster, calmer browsing experience that stays out of your way.',
+      'product-title': 'See the difference instantly.',
+      'product-copy': 'Watch KLEAN sweep away the interruptions and leave only the page you came for.',
+      'clear-clutter-label': 'Clear the clutter',
+      'restore-clutter-label': 'Restore the clutter',
+      'demo-card-title': 'Just the good stuff.',
+      'final-title': 'Make space for better browsing.',
+      'final-copy': 'One cleaner click puts your attention back where it belongs.',
+      'final-cta': 'Get KLEAN',
+      'footer-brand': 'KLEAN',
+      'footer-copy': 'Cleaner browsing for a clearer mind.',
+      'footer-meta': 'BUILT FOR FOCUS / 2026'
+    };
+
+    Object.entries(localCopy).forEach(([id, copy]) => {
+      const element = document.querySelector(`[data-template-id="${id}"]`);
+      if (element && !element.textContent.trim()) element.textContent = copy;
+    });
+
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.querySelectorAll('#mobileMenu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.querySelectorAll('[data-install]').forEach((button) => {
+      button.addEventListener('click', () => {
+        window.open('https://chromewebstore.google.com/search/KLEAN', '_blank', 'noopener,noreferrer');
+      });
+    });
+
+    const clearButton = document.getElementById('clearClutter');
+    const demoShell = document.getElementById('demoShell');
+    const clearLabel = document.querySelector('[data-template-id="clear-clutter-label"]');
+    const restoreLabel = document.querySelector('[data-template-id="restore-clutter-label"]');
+
+    clearButton.addEventListener('click', () => {
+      const hasCleared = demoShell.classList.toggle('cleared');
+      clearLabel.classList.toggle('hidden', hasCleared);
+      restoreLabel.classList.toggle('hidden', !hasCleared);
+      clearButton.setAttribute('aria-pressed', String(hasCleared));
+    });
+
+    const revealElements = [...document.querySelectorAll('.reveal')];
+    const revealOnScroll = () => {
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      revealElements.forEach((element) => {
+        if (element.classList.contains('visible')) return;
+        const bounds = element.getBoundingClientRect();
+        if (bounds.top < viewportHeight * .92 && bounds.bottom > 0) element.classList.add('visible');
+      });
+    };
+
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    window.addEventListener('resize', revealOnScroll, { passive: true });
+
+    const heroStage = document.getElementById('heroStage');
+    const browserShell = document.getElementById('browserShell');
+    heroStage.addEventListener('pointermove', (event) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const rect = heroStage.getBoundingClientRect();
+      const offsetX = (event.clientX - rect.left) / rect.width - .5;
+      const offsetY = (event.clientY - rect.top) / rect.height - .5;
+      browserShell.style.transform = `translate(${offsetX * 11}px, ${offsetY * 8}px) rotate(${-3 + offsetX * 2}deg)`;
+    });
+    heroStage.addEventListener('pointerleave', () => {
+      browserShell.style.transform = '';
+    });
+
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const cursor = document.querySelector('.custom-cursor');
+      const ring = document.querySelector('.cursor-ring');
+
+      window.addEventListener('pointermove', (event) => {
+        cursor.style.left = `${event.clientX}px`;
+        cursor.style.top = `${event.clientY}px`;
+        ring.style.left = `${event.clientX}px`;
+        ring.style.top = `${event.clientY}px`;
+        document.body.classList.add('cursor-ready');
+      });
+
+      document.querySelectorAll('a, button').forEach((element) => {
+        element.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        element.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+    }
+
+    lucide.createIcons();
+  </script>
+ </body>
+</html>
